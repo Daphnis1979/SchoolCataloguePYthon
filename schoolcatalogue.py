@@ -1,49 +1,73 @@
 class School:
-  def __init__(self, name, level, number):
+  def __init__(self, name, level, numberOfStudents):
     self.name = name
     self.level = level
-    self.number= number
+    self.numberOfStudents = numberOfStudents
 
-  def get_name(self):
+  def getName(self):
     return self.name
-
-  def get_level(self):
+  
+  def getLevel(self):
     return self.level
+  
+  def getNumberOfStudents(self):
+    return self.numberOfStudents
 
-  def get_number(self):
-    return self.number
-
-  def set_number(self,newNumber):
-    self.number= newNumber
-
+  def setNumberOfStudents(self, newNumber):
+    self.numberOfStudents = newNumber 
+    
   def __repr__(self):
-    return "A " + str(self.level) + " school named " + self.name + " with " + str(self.number) + " students"
+    return f"A {self.level} school named {self.name} with {self.numberOfStudents} students."
 
-class Primary(School):
-  def __init__(self, name, number, policy):
-    super().__init__(self, 'primary', number) 
-    self.policy = policy
+a = School("Your Mom", "High", 300)
+print(a)
+print(a.getName())
+print(a.getLevel())
+print(a.getNumberOfStudents())
+a.setNumberOfStudents(350)
+print(a)
 
-  def get_policy(self):
-    return self.policy
+class PrimarySchool(School):
+  def __init__(self, name, numberOfStudents, pickupPolicy):
+    super().__init__(name, "primary", numberOfStudents)
+    self.pickupPolicy = pickupPolicy
+
+  def getPickupPolicy(self):
+    return self.pickupPolicy
 
   def __repr__(self):
     parentRepr = super().__repr__()
-    return parentRepr + "The pickup policy is {policy}".format(policy=self.policy)
+    return parentRepr + "The pickup policy is {pickupPolicy}".format(pickupPolicy = self.pickupPolicy)
 
-b = Primary("Oxford", 400, "Pickup Allowed")
-print(b.get_policy())
+
+b = PrimarySchool("YourMom2", 450, "Pickup Allowed")
+print(b)
+print(b.getName())
+print(b.getLevel())
+print(b.getNumberOfStudents())
+b.setNumberOfStudents(300)
+print(b.getNumberOfStudents())
+print(b.getPickupPolicy())
+print(b)
 
 class HighSchool(School):
-  def __init__(self, name, numberOfStudent, sportsTeams):
-    super().__init__(name, 'High', numberOfStudent)
+  def __init__(self, name, numberOfStudents, sportsTeams):
+    super().__init__(name, "high", numberOfStudents)
     self.sportsTeams = sportsTeams
 
   def getSportsTeams(self):
     return self.sportsTeams
-  def __repr__(self):
-    parent = super().__repr__()
-    return parent + f" information of our sport Team {self.sportsTeams}"
 
-c = HighSchool("Codecademy High", 500, ["Tennis", "Basketball"])
+  def __repr__(self):
+    parentRepr = super().__repr__()
+    return parentRepr + "This school features the following sports teams: {sportsTeams}".format(sportsTeams = self.sportsTeams)
+
+c = HighSchool("YourMom3", 548020, ["Syncronized Macrame", "FratBoy Date Rape"])
+print(c)
+print(c.getName())
+print(c.getLevel())
+print(c.getNumberOfStudents())
+c.setNumberOfStudents(300)
+print(c.getNumberOfStudents())
+print(c.getSportsTeams())
 print(c)
